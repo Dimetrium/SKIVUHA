@@ -1,0 +1,52 @@
+#wrapper{
+	margin: auto;
+	height: 300px;
+}
+
+/*Block header*/
+.header{
+	height: 77px;
+	background: black;
+}
+
+.logo{
+	float: left;
+	margin-left: 150px;
+}
+
+.nav ul{
+	padding-top: 30px;
+}
+.nav li{
+	display: inline;
+
+
+	padding-left: 50px;
+}
+.nav li a {
+	text-decoration: none;
+	font: 12px Arial;
+	color: #666c73;
+}
+
+.nav li a:hover{
+	color: white;
+}
+
+/*Block slider*/
+.slider{
+	position: relative;
+}
+
+
+
+.slider-main{
+	background-color: #ff813d;
+	height: 687px;
+	background-image: url(images/header_slide_1.jpg);
+	outline: 1px solid yellow;
+	border-top: 9px solid #ed5d15;
+	border-bottom: 31px solid #ff742e;
+}
+
+
