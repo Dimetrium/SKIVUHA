@@ -1,0 +1,256 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400,300,800,700,600);
+@import url(http://fonts.googleapis.com/css?family=Coming+Soon);
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-width: 960px;
+    font: 14px 'Open Sans', sans-serif;;
+}
+.clear:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clear{
+    zoom: 1;
+    display: block;
+}
+#wrapper{
+	margin: 0px auto;
+}
+
+/*-----------------Start block header-----------------*/
+#io-header{
+    background: #000 url(images/header-bg.jpg) no-repeat center;
+    height: 386px;
+    padding-top: 56px;
+}
+
+.io-logo-bg{
+    background: #212121;
+ }
+.io-top-menu{
+    height: 70px;
+    margin: 0 auto;
+    width: 960px;
+    line-height: 70px;
+}
+.io-logo{
+    float: left;
+}
+h1 a{
+    font-family: 'Coming Soon', cursive;
+}
+.io-nav li{
+    display: inline;
+    float: right;
+    margin-left: 20px;
+}
+.io-nav a, .io-logo a{
+    color: #d9d9d9;
+    text-decoration: none;
+}
+
+.io-nav li:hover,
+.io-nav li.active
+{
+	border-bottom: 2px solid #32b0ee;
+}
+.io-nav li:hover{
+    border-bottom: 2px solid #0fdd96;
+}
+.io-header-text p{
+    color: #fff;
+    text-align: center; 
+    padding: 3em 0;
+    font-size: 40px;
+    font-weight: 200;
+}
+
+
+/*-----------------End block header-----------------*/
+
+/*-----------------Start block main-----------------*/
+#io-main-block{
+	background-color: #fff;
+}
+.io-main-block{
+	margin: 0 auto;
+    width: 960px;
+    text-align:center;
+}
+.io-head-main h2{
+    color: #0eb493;
+    margin: 20px;
+}
+.io-head-main-text p{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 16px 'Open sans';
+    color: #5b646e;
+    margin: 0 110px 50px 110px;
+    
+}
+.io-head-main-img{
+    background-image: url(images/hr-bg.png);
+    width: 229px;
+    height: 14px;
+    display: inline-block;
+}
+
+.io-main-fotos {
+    margin: auto;
+    text-align: center;
+    
+}
+.io-main-fotos li{
+    float: left;
+    width: 23%;
+    padding: 0 1% 0 1%;
+}
+.io-main-fotos li img {
+    width: 100%;
+}
+.io-main-fotos li a h3 {
+    font: 600 16px 'Open Sans';
+    color: #062033;
+}
+.io-main-fotos li a p{
+    color: #b6babd;
+    font: 12px 'Open Sans';
+}
+.io-main-fotos li a{
+    text-decoration: none;
+    display: block;
+    }
+.io-main-fotos ul{
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.io-main-fotos li.io-main-foto-n1 h3
+{
+   color: #0eb493;
+}
+
+.io-main-fotos li:hover h3,
+.io-main-fotos li.io-main-foto-n1 h3
+{
+color: #0eb493;
+}
+.io-main-bottom-point li{
+    background: url(images/slide_point_bg.png) no-repeat;
+    display: inline-block;
+    cursor: pointer;
+    width: 8px;
+    height: 8px;
+    margin: 30px 5px 20px 5px;
+    
+}
+
+.io-main-bottom-point li:hover,
+.io-main-bottom-point li.io-first-buttom
+{
+
+    background: url(images/slide_point_active_bg.png) no-repeat;
+}
+/*-----------------end block main-----------------*/
+
+/*-----------------start block footer-----------------*/
+
+.io-footer{
+    background: #052233;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.io-footer-top{
+    width: 960px;
+    margin: 80px auto 30px auto;
+}
+
+.io-footer-main{
+    width: 960px;
+    margin: 0 auto 50px auto;
+}
+
+.io-footer h3 {
+	font: bold 14px OpenSans, Myriad Pro, Halvetica, sans-serif;
+}
+
+.io-footer ul {
+	list-style-type:none;
+}
+
+.io-footer a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.io-footer li{
+    padding: 5px 0;
+}
+
+.io-footer a:hover{
+    color: #0fdd96;
+    text-decoration: none;
+}
+
+.io-form {
+	border: 2px solid #fff;
+	margin-bottom: 27px;
+}
+
+.io-input-text{
+    background: #052233;
+    border: 3px solid #fff;
+    padding: 5px 10px;
+    height: 30px;
+    color: #fff;
+	width: 186px;
+	border: none;
+	float: left;
+}
+
+.io-submit-form{
+    border: 0;
+    background: #052233 url(images/arrow-input-bg.png) no-repeat center;
+    padding: 5px 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 15px;
+	height: 40px;
+    width: 20px;
+}
+
+.io-submit-form:hover{
+    background: #336633 url(images/arrow-input-bg.png) no-repeat center;
+}
+
+.io-footer > div > div{
+    float: left;
+    padding-left: 20px;
+}
+
+.io-footer .io-footer-space{
+    width: 200px;
+    padding-left: 0;
+}
+
+.io-footer-space2{
+    width: 250px;
+	margin-left: 10px;
+}
+
+.io-footer-space3,
+.io-footer-space4{
+    width: 150px;
+	margin-left: 10px;
+}
+
+
+/*-----------------end block footer-----------------*/
