@@ -1,13 +1,6 @@
 <?php
-	function getGenre(){
-$qGenre=mysql_query("SELECT genrename FROM genre");	
-    $genre=array();
-while($genre=mysql_fetch_assoc($qGenre))
-    return $genre;
-	
-	function show($genre,$search){
-	$query="
-			SELECT
+function show($genre,$search){
+$query="SELECT
 				b.id,
 				b.title,
 				GROUP_CONCAT(DISTINCT a.authorname SEPARATOR ', ') AS authorname,
@@ -41,8 +34,7 @@ while($genre=mysql_fetch_assoc($qGenre))
 		 	GROUP BY 
 				b.title
 		";
-	$qShow=mysql_query($query);
-	return $qShow;
-
-	
+$qShow=mysql_query($query);
+return $qShow;
+}
 ?>

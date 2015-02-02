@@ -1,46 +1,3 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
-<head>
-<title>Книжный Каталог</title>
-<meta name="" content="">
-<link type="text/css" rel="stylesheet" href="stylesheet.css"/>
-</head>
-<body>
-
-<div id="admin_button"><a class="admin" style="background-color: red;" href="admin.php">Администратор</a></div>
-<div id="header"><a id="header_link" href="index.php">Книжный Каталог</a></div>
-<div id="content">
-
-
-
-		<table style="margin: auto;">	
-			<tr>
-			<form method="GET" action="index.php">
-			<td>Название/Автор:<br>
-				<input type="text" name="search"/></td>
-			<td>Жанр:<br>
-				<select name="genre">
-				<option value="">Любой</option>';
-
-
-
-			<table width="100%" cellpadding="5px">
-				<th>Название</th>
-				<th>Автор</th>
-				<th>Жанр</th>
-				<th>Описание</th>
-				<th>Цена</th>			
-
-				<td width='20%'>$show[authorname]</td>
-				<td width='13%'>$show[genrename]</td>
-				<td width='40%'>$show[description]</td>
-				<td width='2%'>$show[price]</td>
-				</tr>
-				
-		};
-		echo '</table>';		
-	}
-	else echo'
 		<div style="text-align: left;">
 		Сделать простой книжный каталог.<br><br> 
 		Условия заказчика:<br>
@@ -61,8 +18,6 @@
 			<li> информацию о заказах книг хранить в БД не нужно, она должна оставаться в письмах;</li>
 		</ul>
 		</div>
-	
 </div>
 </body>
 </html>
-
