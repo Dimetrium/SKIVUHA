@@ -21,23 +21,4 @@ function sizefile($size){
         return number_format($size/1024/1024, 2) . "Mb";
     }
 }
-
-function upload(){
-    global $name;
-    global $tmp_name;
-    if(file_exists(DIR) && $name!=''){
-        $var = "The file $name already uploaded!";
-    return $var;}
-    else{
-        if(move_uploaded_file($tmp_name, DIR)){
-            $var = "File upload successful!";
-            return $var;
-    }
-        else
-            {
-            $var = "File not uploaded";
-        return $var;}
-}
-
-}
 ?>

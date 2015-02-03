@@ -5,16 +5,23 @@ include 'functions.php';
 $dir = opendir(DIR_DEST);
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
-    $var = upload();
-}
+    if(file_exists(DIR) && $name!=''){
+        echo "The file $name already uploaded!";}
+    else{
+        if(move_uploaded_file($tmp_name, DIR)){
+            echo "File upload successful!";
+    }
+        else
+            {echo "File not uploaded";}
+}}
 if(isset($_GET['name'])){
     $file = $_GET['name'];
     $file_del = DIR_DEST . $file;
-
-    if($var = del($file_del)){
-        $var;
+    
+        if($var = del($file_del)){
+        echo $var;
         }else{
-            $var = "Access denided";
+            echo "Access denided";
         }
 }
     //if(isset($_SERVER['HTTP_REFERER'])){

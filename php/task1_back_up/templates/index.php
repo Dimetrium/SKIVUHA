@@ -30,8 +30,6 @@ while($name= readdir($dir)):
     <?php 
 $count++;
 endwhile;
-if($count==1)
-    echo "Is no file";
 closedir($dir);
     ?>
    </table>
