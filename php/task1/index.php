@@ -2,6 +2,7 @@
 include 'config.php';
 
 include 'functions.php';
+$display = display();
 $dir = opendir(DIR_DEST);
 
 if($_SERVER['REQUEST_METHOD']=='POST'){

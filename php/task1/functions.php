@@ -1,7 +1,7 @@
 <?php 
 function del($name){
     global $file;
-        if(is_writable($name)){;
+		if(is_writable($name)){;
             unlink($name);
             $var = "File $file deleted";
         return $var;
@@ -25,12 +25,12 @@ function sizefile($size){
 function upload(){
     global $name;
     global $tmp_name;
-    if(file_exists(DIR) && $name!=''){
+	if(file_exists(DIR) && $name!=''){
         $var = "The file $name already uploaded!";
     return $var;}
     else{
         if(move_uploaded_file($tmp_name, DIR)){
-            $var = "File upload successful!";
+		    $var = "File upload successful!";
             return $var;
     }
         else
@@ -40,4 +40,17 @@ function upload(){
 }
 
 }
+function display(){
+	$files = scandir(DIR_DEST);
+	array_shift($files);
+	array_shift($files);
+	if(empty($files)){
+		$display='style="display: none;"';
+		return $display;}
+	else{
+		$display='';
+		return $display;}
+	}
+
+
 ?>

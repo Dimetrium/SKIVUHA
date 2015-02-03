@@ -10,7 +10,7 @@
    </form>
    <h3><?php echo $var;?></h3>
    <hr>
-   <table align="center" border="1" cellpadding="6" frame="1" width="800">
+   <table <?=$display?> align="center" border="1" cellpadding="6" frame="1" width="800">
        <tr>
            <th>N</th>
            <th>Name of file</th>
