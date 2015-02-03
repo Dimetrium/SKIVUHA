@@ -1,31 +1,16 @@
 <pre>
 <?php
 include 'config.php';
-class File
+function __autoload($class)
 {
-	public $file;
-	
-	function __construct($sourse_file){
-	$this->file = file($sourse_file);
-	}
-	
-	function getStroka(){
-		file_put_contents(DEST_FILE, $this->file);
-		return true;
-	}
-	
-	function getSimvol(){
-		if (is_writable(DEST_FILE)){
-			
-		
-		}
-		foreach($this->file as $file_string)
-		fwrite(DEST_FILE, $file_string);
-	}
-	
+    include_once 'lib/'.$class.'.php';
 }
 $obj = new File(SOURCE_FILE);
-var_dump($obj->file);
-$obj->getSimvol();
-
+$text_in_file = $obj->getText();
+$string = $obj->getString(0);
+$sim = $obj->getSim(2,1);
+$string_changes = $obj->setString(0, 'Nooooooo!');
+$sim_changes = $obj->setSim(2, 1, '@');
+$newfile = $obj->newFile();
+include 'templates/index.php';
 ?>
