@@ -3,7 +3,7 @@
 include 'config.php';
 function __autoload($class)
 {
-    include_once 'lib/'.$class.'.php';
+    include('lib/'.$class.'.php');
 }
 $obj = new File(SOURCE_FILE);
 $text_in_file = $obj->getText();
