@@ -1,0 +1,36 @@
+class Demo
+{
+  public $testOne;
+  private $testSecond;  c этой переменной функции setTestOne и getTestOne работать не будут.
+  protected $testThird;
+  
+  public function sayHello()
+  {
+    return 'hello'.date(d-m-Y);
+  }
+  
+}
+
+class DemoChild extends Demo
+{
+  public function setTestOne($var)
+  {
+    $this->testOne =$var; - это будет работать;
+  }
+  public function getTestOne()
+  {
+  return $this->testOne;
+  }
+  
+  переопределяем функцию
+  public function sayHello($name)
+  {
+    parent::sayHello();
+    return 'hello'.$name;
+  }
+}
+
+$obj1 = new Demo();
+$obj2 = new DemoChild();
+$obj2->setTestOne('hello');
+echo $obj2->sayHello(); будет работать
