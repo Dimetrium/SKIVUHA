@@ -4,8 +4,8 @@ class MySql extends Sql
     function __construct(){
         if(DEMO === false)
         {
-        mysql_connect('localhost', 'root', '');
-        mysql_select_db('table');
+        mysql_connect(HOST, USER, PASSWORD);
+        mysql_select_db(DB_NAME);
         }
         else return true;
     }
@@ -18,10 +18,11 @@ class MySql extends Sql
         else
         {
            $res = mysql_query($this->query);
-           $a=array();
-            $row = mysql_fetch_assoc($res);
-            foreach($row as $a)
-            $a=$a;
+           $arr=array();
+           $row = mysql_fetch_assoc($res);
+           foreach($row as $arr)
+             $arr=$a;
+           return $this->query = $arr;
         }
     }
     

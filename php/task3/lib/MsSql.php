@@ -1,11 +1,11 @@
 <?php
-class MySql extends Sql
+class MsSql extends Sql
 {
     function __construct(){
         if(DEMO === false)
         {
-        mysql_connect('localhost', 'root', '') or die('no coon');
-        mysql_select_db(table)or die('no con to DB');
+        mssql_connect(HOST, USER,PASSWORD);
+        mssql_select_db(DB_NAME);
         }
         else return true;
     }
@@ -17,11 +17,12 @@ class MySql extends Sql
             return __Class__.__Method__.$this->query;
         else
         {
-           $res = mysql_query($this->query);
-           $a=array();
-            $row = mysql_fetch_assoc($res);
-            foreach($row as $a)
-            $a=$a;
+           $res = mssql_query($this->query);
+           $arr=array();
+            $row = mssql_fetch_assoc($res);
+            foreach($row as $arr)
+              $query=$arr;
+            return $this->query = $query;
         }
     }
     
@@ -32,7 +33,7 @@ class MySql extends Sql
             return __Class__.__Method__.$this->query;
         else
         {
-           $res = mysql_query($this->$query);
+           $res = mssql_query($this->$query);
            return true;
         }
     
@@ -45,13 +46,12 @@ class MySql extends Sql
             return __Class__.__Method__.$this->query;
         else
         {
-           $res = mysql_query($this->$query);
+           $res = mssql_query($this->$query);
            return true;
         }
-    
     }
-     
-        function updateQuery($oldName, $newName, $table, $start=0, $end=10)
+    
+    function updateQuery($oldName, $newName, $table, $start=0, $end=10)
     {
     parent::updateQuery($oldName, $newName, $table, $start=0, $end=10);
        
@@ -59,7 +59,7 @@ class MySql extends Sql
        return __Class__.__Method__.$this->query;
        else
         {
-           $res = mysql_query($this->$query);
+           $res = mssql_query($this->$query);
            return true;
         }
     
@@ -67,7 +67,7 @@ class MySql extends Sql
     function __destruct()
     {
         if (DEMO === false)
-            mysql_close();
+            mssql_close();
     }
 
 }

@@ -73,7 +73,7 @@ class Sql
   }
     function protect($value){
         $value = implode(', ', $value);
-        $value = mysql_real_escape_string(trim($value));
+        $value = trim($value);
         $value = explode(', ', $value);
         return $value;
     }

@@ -34,10 +34,9 @@ class PgSql extends Sql
             return __Class__.__Method__.$this->query;
         else
         {
-           $res = mysql_query($this->$query);
+           $res = pg_query($this->$query);
            return true;
         }
-    
     }
     
     function insertQuery($row, $value, $table,$start=0, $end=10)
@@ -47,7 +46,7 @@ class PgSql extends Sql
             return __Class__.__Method__.$this->query;
         else
         {
-           $res = mysql_query($this->$query);
+           $res = pg_query($this->$query);
            return true;
         }
     
@@ -61,7 +60,7 @@ class PgSql extends Sql
        return __Class__.__Method__.$this->query;
        else
         {
-           $res = mysql_query($this->$query);
+           $res = pg_query($this->$query);
            return true;
         }
     
