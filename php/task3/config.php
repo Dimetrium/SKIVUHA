@@ -1,3 +1,3 @@
 <?php
-
+define('DEMO', true);
 ?>
