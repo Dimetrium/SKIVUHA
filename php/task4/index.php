@@ -1,11 +1,21 @@
 <?php
   function __autoload($class)
   {
-    include('lib/'.$class.'.php');
+    require_once('lib/'.$class.'.php');
   }
+require_once 'functions.php';
 
-$obj = new MySql;
-$obj->add('val','1111');
-//echo $obj->read('val');
 
-?>
+$cookie = new Cookie();
+$add_cookie = add($cookie, 'this', 'value');
+$read_cookie = read($cookie, 'this');
+$remove_cookie = remove($cookie, 'this');
+
+$session = new Session();
+$add_c = add($session, 'this', 'value');
+$read_c = read($session, 'this');
+$remove_c = remove($session, 'this');
+
+$my_sql = new MySql();
+echo $my_sql->remove('this');
+require_once 'templates/index.php';

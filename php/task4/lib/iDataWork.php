@@ -5,4 +5,3 @@ interface iDataWork
   public function read($key);
   public function remove($key);
 }
-?>

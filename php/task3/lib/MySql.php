@@ -10,9 +10,9 @@ class MySql extends Sql
         else return true;
     }
         
-    function selectQuery($row, $table,$start=0, $end=10)
+    function selectQuery($row, $table, $limit)
     {
-        parent::selectQuery($row, $table,$start=0, $end=10);
+        parent::selectQuery($row, $table,$limit);
         if(DEMO === true)
             return __Class__.__Method__.$this->query;
         else
@@ -26,9 +26,9 @@ class MySql extends Sql
         }
     }
     
-    function deleteQuery($row, $name, $value,$start=0, $end=10)
+    function deleteQuery($row, $name, $value, $limit)
     {
-        parent::deleteQuery($row, $name, $value,$start=0, $end=10);
+        parent::deleteQuery($row, $name, $value,$limit);
         if(DEMO === true)
             return __Class__.__Method__.$this->query;
         else
@@ -39,9 +39,9 @@ class MySql extends Sql
     
     }
     
-    function insertQuery($row, $value, $table,$start=0, $end=10)
+    function insertQuery($row, $value, $table, $limit)
     {
-        parent::insertQuery($row, $value, $table,$start=0, $end=10);
+        parent::insertQuery($row, $value, $table, $limit);
         if(DEMO === true)
             return __Class__.__Method__.$this->query;
         else
@@ -52,9 +52,9 @@ class MySql extends Sql
     
     }
      
-        function updateQuery($oldName, $newName, $table, $start=0, $end=10)
+        function updateQuery($oldName, $newName, $table, $limit)
     {
-    parent::updateQuery($oldName, $newName, $table, $start=0, $end=10);
+    parent::updateQuery($oldName, $newName, $table, $limit);
        
        if(DEMO === true)
        return __Class__.__Method__.$this->query;

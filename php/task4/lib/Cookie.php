@@ -1,12 +1,15 @@
 <?php
-class Cookie
+class Cookie implements iDataWork
 {
-  
 
   public function add($key, $val)
   {
-    setcookie($key, $val, time()+3600);
-    return true;
+      if(!isset($_COOKIE[$key]))
+         {
+            setcookie($key, $val, time()+3600);
+            return 'Cookie create';
+         }
+         else return 'Cookie exist';
   }
 
   public function read($key)
@@ -16,8 +19,7 @@ class Cookie
   
   public function remove($key)
   {
-    setcookie($key, "", time()-3600);
+    setcookie($key, '',time()-1);
+      return 'Cookie deleted';
   }
 }
-
-?>

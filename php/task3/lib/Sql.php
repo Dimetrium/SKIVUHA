@@ -3,8 +3,10 @@ class Sql
 {
     protected $query;
     
-  function selectQuery($row, $table, $start=0, $end=10)
+    protected function selectQuery($row, $table, $limit)
   {
+        $row = $this->protect($row);
+        $table = $this->protect($table);
     if(empty($row[0]) || empty($table[0]))
     {
         $queryError = "Error. One field is empty!";
@@ -17,14 +19,18 @@ class Sql
     }
       else
       {
-      $query = 'SELECT '.implode(', ',$row).' FROM '.implode(', ',$table).' LIMIT '.$start.', '. $end;
+        if (strlen($limit)!=0)
+        $limit=" LIMIT $limit";
+      $query = 'SELECT '.implode(', ',$row).' FROM '.implode(', ',$table).' '.$limit;
       $this->query = $query;
       }
     return true;
   }
 
-      function deleteQuery($table, $name, $value, $start=0, $end=10)
+      protected function deleteQuery($table, $name, $value, $limit)
   {
+        $table = $this->protect($table);
+        $name = $this->protect($name);
           if(empty($table[0]) || empty($name[0]) || empty($value))
     {
         $queryError = "Error. One field is empty!";
@@ -32,14 +38,19 @@ class Sql
     }
       else
       {
-          $query  = 'DELETE FROM '.implode(', ',$table).' WHERE '.implode(', ', $name).' = '.$value.' LIMIT '.$start.', '. $end;
+          if (strlen($limit)!=0)
+              $limit=" LIMIT $limit";
+          $query  = 'DELETE FROM '.implode(', ',$table).' WHERE '.implode(', ', $name).' = '.$value.' '.$limit;
           $this->query = $query;
           return true;
       }
   }
     
-  function insertQuery($row, $value, $table, $start=0, $end=10)
+  protected function insertQuery($row, $value, $table, $limit)
   {
+      $row = $this->protect($row);
+      $value = $this->protect($value);
+      $table = $this->protect($table);
       if(empty($table[0]) || empty($row[0]) || empty($value[0]))
     {
         $queryError = "Error. One field is empty!";
@@ -52,28 +63,33 @@ class Sql
     }
     else
     {
-    $query = 'INSERT INTO '.implode(', ',$table).' ('.implode(', ',$row).') VALUES ('.implode(', ',$value).') LIMIT '. $start.', '.$end;
+    $query = 'INSERT INTO '.implode(', ',$table).' ('.implode(', ',$row).') VALUES ('.implode(', ',$value).')';
       $this->query = $query;
       return true;
     }
   }
   
-    function updateQuery($oldName, $newName, $table, $start=0, $end=10)
-  {if(empty($oldName[0]) || empty($table[0]))
+    protected function updateQuery($oldName, $newName, $table, $limit)
+   {    $oldName = $this->protect($oldName);
+        $newName = $this->protect($newName);
+        $table = $this->protect($table);
+  if(empty($oldName[0]) || empty($table[0]))
     {
         $queryError = "Error. One field is empty!";
         return $this->query = $queryError;
     }
     else
     {
-    $query = 'UPDATE '.implode(', ',$table). ' SET '.implode(', ',$oldName).' = '.implode(', ',$newName).' LIMIT '.$start.', '.$end;
+    if (strlen($limit)!=0)
+        $limit=" LIMIT $limit";
+    $query = 'UPDATE '.implode(', ',$table). ' SET '.implode(', ',$oldName).' = '.implode(', ',$newName).' '.$limit;
       $this->query = $query;
       return true;
     }
   }
-    function protect($value){
+    protected function protect($value){
         $value = implode(', ', $value);
-        $value = trim($value);
+        $value = htmlspecialchars(trim($value));
         $value = explode(', ', $value);
         return $value;
     }
