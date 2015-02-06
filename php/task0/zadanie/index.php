@@ -1,9 +1,11 @@
-<?php
+<!-- <?php
 	mysql_connect('localhost','root','');
 	mysql_select_db('books');
 	
 	
 ?>
+
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <html>
 <head>
@@ -16,18 +18,24 @@
 <div id="admin_button"><a class="admin" style="background-color: red;" href="admin.php">Администратор</a></div>
 <div id="header"><a id="header_link" href="index.php">Книжный Каталог</a></div>
 <div id="content">
+
+
 <?php
 	$qGenre=mysql_query("SELECT genrename FROM genre");	
+																		-->
+
+
+
 	
 	echo '
-		<table style="margin: auto;">	
+<!--		<table style="margin: auto;">								<!--
 			<tr>
 			<form method="GET" action="index.php">
 			<td>Название/Автор:<br>
 				<input type="text" name="search"/></td>
 			<td>Жанр:<br>
 				<select name="genre">
-				<option value="">Любой</option>';
+				<option value="">Любой</option>'; 						-->
 	while($genre=mysql_fetch_assoc($qGenre)){
 		echo "<option>$genre[genrename]</option>";
 	}	
@@ -35,7 +43,7 @@
 			<td><br><input type="submit" name="show" value="Показать"/></td>
 			</form></tr>
 		</table><br>
-	';
+	';																	-->
 	if(isset($_GET['show'])){
 		$qShow=mysql_query("
 			SELECT
@@ -82,9 +90,9 @@
 		';
 		$rcolor=1;
 		while($show=mysql_fetch_assoc($qShow)){
-			if(($rcolor%2)==1) echo "<tr style='color: white; background-color: #4a4a4a'>
+			if(($rcolor%2)==1) echo "<tr style='color: white; background-color: #4a4a4a <?=first?>'>
 									<td width='25%'><a style='color: white; font-weight:bold;' href='book.php?id=$show[id]'>$show[title]</a></td>";
-			else echo "<tr style='color: black; background-color: #cacaca'>
+			else echo "<tr style='color: black; background-color: #cacaca <?=second?>'>
 						<td width='25%'><a style='color: black; font-weight:bold;' href='book.php?id=$show[id]'>$show[title]</a></td>";
 			echo "				
 					<td width='20%'>$show[authorname]</td>
@@ -98,7 +106,7 @@
 		echo '</table>';		
 	}
 	else echo'
-		<div style="text-align: left;">
+		<div style="text-align: left;<?=show?>">
 		Сделать простой книжный каталог.<br><br> 
 		Условия заказчика:<br>
 		Нужно создать веб интерфейс администратора для внесения/редактирования названий книг (и краткого описания о чем книга), цен, авторов и жанров.<br><br>

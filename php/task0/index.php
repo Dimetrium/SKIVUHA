@@ -1,8 +1,12 @@
 <?php
-    include 'config.php';
-	mysql_connect('HOST','USER','PASSWORD');
-	mysql_select_db('DB_NAME');
-	
-$qGenre=mysql_query("SELECT genrename FROM genre");	
-while($genre=mysql_fetch_assoc($qGenre)):
-include 'VIEW';
+include 'config.php';	
+$connect = connect_to_db();
+$spisok = get_spisok();
+$spisok = set_spisok($spisok);
+$show = is_show();
+$footer = content_footer_show($show);
+$content = content_show($show);
+$show = get_show($genre,$search, $show);
+$show = set_show($show);
+include VIEW;
+?>
