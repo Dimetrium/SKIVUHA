@@ -5,7 +5,7 @@ class Cookie implements iDataWork
   public function add($key, $val)
   {
       if(!isset($_COOKIE[$key]))
-         {
+         {  $_COOKIE[$key]=$val;
             setcookie($key, $val, time()+3600);
             return 'Cookie create';
          }

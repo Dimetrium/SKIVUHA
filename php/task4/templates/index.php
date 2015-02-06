@@ -1,8 +1,11 @@
-Cookie:<br>
 <?=$add_cookie?><br>
-<?=$read_cookie?>
+<?=$read_cookie?><br>
+<?=$remove_cookie?><br>
 <hr>
-<?=$add_c?><br>
-<?=$read_c?><br>
-<?=$remove_c?><br>
-<?=$read_c1?><br>
+<?=$add_session?><br>
+<?=$read_session?><br>
+<?=$remove_session?><br>
+<hr>
+<?=$add_my_sql?><br>
+<?=$read_my_sql?><br>
+<?=$remove_my_sql?><br>
