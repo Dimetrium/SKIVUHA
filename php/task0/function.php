@@ -9,17 +9,12 @@ function connect_to_db()
 function get_spisok()
 {
     if($connect===true)
-        $qGenre=mysql_query("SELECT genrename FROM genre");
-    return $qGenre;
-    else
-    return false;
-}
-
-function set_spisok($res)
-{
-    while($genre=mysql_fetch_assoc($res));
+        $res=mysql_query("SELECT genrename FROM genre");
+        while($genre=mysql_fetch_assoc($res));
     $spisok.= "<option>$genre[genrename]</option>";
     return $spisok;
+    else
+    return false;
 }
 
 function is_show()
@@ -37,6 +32,7 @@ function is_show()
 
 function get_show($genre,$search, $show)
 {
+    global $first,$second;
     if($show===true)
     {
         $query="SELECT
@@ -73,18 +69,9 @@ function get_show($genre,$search, $show)
 		 	GROUP BY 
 				b.title
 		  ";
-        return $query;
-    }
-    else
-        return false;
-}
-
-function set_show($res)
-{
-    global $first,$second;
-    $qShow=mysql_query($res);
-    $arr=array();
-    $rcolor=1;
+        $qShow=mysql_query($res);
+        $arr=array();
+        $rcolor=1;
 		while($show=mysql_fetch_assoc($qShow))
         {
             if(($rcolor%CHET)==NECHET)
@@ -100,7 +87,10 @@ function set_show($res)
             $rcolor++;
             $arr=$show;
         }
-    return $arr;
+            return $arr;
+    }
+    else
+        return false;
 }
 
 function content_footer_show($rez)
