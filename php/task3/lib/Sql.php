@@ -7,12 +7,12 @@ class Sql
   {
         $row = $this->protect($row);
         $table = $this->protect($table);
-    if(empty($row[0]) || empty($table[0]))
+    if(empty($row) || empty($table))
     {
         $queryError = "Error. One field is empty!";
         return $this->query = $queryError;
     }
-    elseif($row[0] == '*')
+    elseif(!array_search('*', $row)===false)
     {
         $queryError = "Error. You can't use '*' in query";
         return $this->query = $queryError;
@@ -31,7 +31,7 @@ class Sql
   {
         $table = $this->protect($table);
         $name = $this->protect($name);
-          if(empty($table[0]) || empty($name[0]) || empty($value))
+          if(empty($table) || empty($name) || empty($value))
     {
         $queryError = "Error. One field is empty!";
         return $this->query = $queryError;
@@ -51,12 +51,12 @@ class Sql
       $row = $this->protect($row);
       $value = $this->protect($value);
       $table = $this->protect($table);
-      if(empty($table[0]) || empty($row[0]) || empty($value[0]))
+      if(empty($table) || empty($row) || empty($value))
     {
         $queryError = "Error. One field is empty!";
         return $this->query = $queryError;
       }
-      elseif($row[0] == '*')
+      elseif(!array_search('*', $row)===false)
     {
         $queryError = "Error. You can't use '*' in query";
         return $this->query = $queryError;
@@ -73,7 +73,7 @@ class Sql
    {    $oldName = $this->protect($oldName);
         $newName = $this->protect($newName);
         $table = $this->protect($table);
-  if(empty($oldName[0]) || empty($table[0]))
+  if(empty($oldName) || empty($table))
     {
         $queryError = "Error. One field is empty!";
         return $this->query = $queryError;
@@ -88,9 +88,11 @@ class Sql
     }
   }
     protected function protect($value){
+        $value = array_filter($value);
         $value = implode(', ', $value);
         $value = htmlspecialchars(trim($value));
         $value = explode(', ', $value);
+        $value = array_filter($value);
         return $value;
     }
 
