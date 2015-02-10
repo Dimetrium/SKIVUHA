@@ -5,11 +5,11 @@ class Model
     private $emailErr;
     private $massageErr;
     private $subjectErr;
+    private $send_mail;
     private $name;
     private $email;
     private $massage;
     private $select;
-    private $selected;
     private $selected_first;
     private $selected_second;
     
@@ -17,10 +17,15 @@ class Model
    {
 
    }
-   	
+    function __set($property, $val)
+    {
+      if(property_exists($this, $property))
+        $this->$property=$val;
+    }
+
 	public function getArray()
    {	
-		return array('%TITLE%'=>'Contact Form', '%ERRORS_NAME%'=>$this->err, '%ERRORS_EMAIL%'=>$this->emailErr, '%NAME%'=>$this->name, '%EMAIL%'=>$this->email, '%MASSAGE%'=>$this->massage, '%ERRORS_MASSAGE%'=>$this->massageErr, '%ERRORS_SUBJECT%'=>$this->subjectErr, '%SELECTED_FIRST%'=>$this->selected_first, '%SELECTED_SECOND%'=>$this->selected_second);
+		return array('%TITLE%'=>'Contact Form', '%ERRORS_NAME%'=>$this->err, '%ERRORS_EMAIL%'=>$this->emailErr, '%NAME%'=>$this->name, '%EMAIL%'=>$this->email, '%MASSAGE%'=>$this->massage, '%ERRORS_MASSAGE%'=>$this->massageErr, '%ERRORS_SUBJECT%'=>$this->subjectErr, '%SELECTED_FIRST%'=>$this->selected_first, '%SELECTED_SECOND%'=>$this->selected_second, '%ERRORS_SEND%'=>$this->send_mail);
    }
 	           
 	public function checkForm()
@@ -57,11 +62,6 @@ class Model
         
         if($this->select=='second')
             {$this->selected_second = 'selected';}
-        
-        var_dump($this->err);
-        var_dump($this->emailErr);
-        var_dump($this->massageErr);
-        var_dump($this->subjectErr);
         
         if(is_null($this->err) && is_null($this->emailErr) && is_null($this->massageErr) && is_null($this->subjectErr))
             {return true;}

@@ -21,14 +21,13 @@
           <option %SELECTED_SECOND% value="second">
               second
           </option>       
-           
-           
        </select>
     </p>
     <div style="color: #FF0000; font-size: 15px;"><strong>%ERRORS_MASSAGE%</strong></div>
     <label name="massage">Massage</label>
     <p><textarea name="massage" value="%MASSAGE%" cols="30">%MASSAGE%</textarea></p>
     <p><input type="submit" name="email" value="Send mail"</p>
-    </form>
+    <div style="color: green; font-size: 15px;"><strong>%ERRORS_SEND%</strong></div>
+ </form>
 </body>
 </html>

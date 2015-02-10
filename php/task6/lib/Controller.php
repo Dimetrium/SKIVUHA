@@ -25,41 +25,27 @@ class Controller
   {
     if($this->model->checkForm() === true)
     {
-      $this->model->sendEmail();
+      if($this->model->sendEmail()===false)
+        {$this->model->send_mail = 'Error. Mail no send';}
+      else
+        {$this->pageDefault();}
     }
     $mArray = $this->model->getArray();		
     $this->view->addToReplace($mArray);	
   }	
 
   private function pageDefault()
-  {   
+  { 
+         $this->model->send_mail = 'Mail was sended!';
+         $this->model->name = '';
+         $this->model->email = '';
+         $this->model->massage = '';
+         $this->model->select = 'selected';
+         $this->model->selected_first = '';
+         $this->model->select_second = '';
+
+    
     $mArray = $this->model->getArray();
     $this->view->addToReplace($mArray);			   
   }				
 }
-
-
-
-
-
-//-----------------------------------
-/*$post = new Model;
-
-$obj = new View;
-
-var_dump($post->getEmail());
-
-$obj->setKey('%TITLE%','My mail form');
-$obj->setKey('%NAME%', $post->name);
-$obj->setKey('%EMAIL%', $post->email);
-$obj->setKey('%MASSAGE%', $post->massage);
-$obj->setKey('%DROPDOWN%', $post->dropdown);
-$obj->setKey('%AGENT%', $_SERVER[HTTP_USER_AGENT]);
-$obj->setKey('%IP%', $_SERVER[REMOTE_ADDR]);
-
-$obj->setShablon('templates/index.php');
-$obj->chengeShablonKey();
-
-echo $obj->shablon;
-*/
-?>
