@@ -1,58 +1,95 @@
 <?php
 class Model
 {   
-    public $name;
-    public $email;
-    public $massage;
-    public $subject;
-    public $err;
-    public $emailErr;
+    private $err;
+    private $emailErr;
+    private $massageErr;
+    private $subjectErr;
+    private $name;
+    private $email;
+    private $massage;
+    private $select;
+    private $selected;
+    private $selected_first;
+    private $selected_second;
     
-    function __construct()
-    {
+    public function __construct()
+   {
+
+   }
+   	
+	public function getArray()
+   {	
+		return array('%TITLE%'=>'Contact Form', '%ERRORS_NAME%'=>$this->err, '%ERRORS_EMAIL%'=>$this->emailErr, '%NAME%'=>$this->name, '%EMAIL%'=>$this->email, '%MASSAGE%'=>$this->massage, '%ERRORS_MASSAGE%'=>$this->massageErr, '%ERRORS_SUBJECT%'=>$this->subjectErr, '%SELECTED_FIRST%'=>$this->selected_first, '%SELECTED_SECOND%'=>$this->selected_second);
+   }
+	           
+	public function checkForm()
+	{
         $this->name = trim(strip_tags($_POST['name']));
-        if (empty($_POST["email"]))
-        { 
-            $emailErr = "Email is required";
-        } 
-        else 
-        {
-            $this->email = trim(strip_tags($_POST['email']));
-        }
-        
-        $this->subject = $_POST['subject'];
+        $this->email = trim(strip_tags($_POST['email_cli']));
         $this->massage = trim(strip_tags($_POST['massage']));
-    }
-    
-    function sendMail()
-    {
-        mail('skivuha@hotmail.com', $this->subject, $this->massage, $this->email);
-    }
-    
-    function getName()
-    {
-        if(!preg_match("/^[a-zA-Z]+$/",$this->name))
-        {
-            $this->err = 'You enter wrong name format';
-            return $this->err;
-        }
+        $this->select = trim(strip_tags($_POST['select']));
+        
+        if(empty($this->name))
+            {$this->err = 'Need name!';}
+        elseif(!preg_match("/^[a-zA-Z ]*$/", $this->name))
+            {$this->err = 'Wrong name!';}
         else
-        {
-            return $this->name;
-        }
-    }
-    
-    function getEmail()
-    {
-        if(!filter_var("$this->email", FILTER_VALIDATE_EMAIL))
-        {
-            $this->emailErr = 'You enter wrong name format';
-            return $this->emailErr;
-        }
+            {$name->name;}
+        
+        if(empty($this->email))
+           {$this->emailErr = 'Need e-mail!';}
+        elseif(!filter_var($this->email, FILTER_VALIDATE_EMAIL))
+            {$this->emailErr = 'Wrong e-mail!';}
         else
-        {
-            return $this->email;
-        }
+           {$this->email;}
+        
+        if(empty($this->massage))
+            {$this->massageErr = 'Need massage!';}
+        else
+            {$this->massage = wordwrap($this->massage, 70, "\r\n");}
+        
+        if($this->select=='null')
+            {$this->subjectErr = 'Choise subject';}
+        
+        if($this->select=='first')
+            {$this->selected_first = 'selected';}
+        
+        if($this->select=='second')
+            {$this->selected_second = 'selected';}
+        
+        var_dump($this->err);
+        var_dump($this->emailErr);
+        var_dump($this->massageErr);
+        var_dump($this->subjectErr);
+        
+        if(is_null($this->err) && is_null($this->emailErr) && is_null($this->massageErr) && is_null($this->subjectErr))
+            {return true;}
+        else
+            {return false;}
+
+        
     }
+   
+	public function sendEmail()
+	{
+        $browser = '';
+        if(strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox'))
+            {$browser = 'firefox';}
+        elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome'))
+            {$browser = 'chrome';}
+        elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 8.0'))
+            {$browser = 'ie8';}
+        elseif(strpos($_SERVER['HTTP_USER_AGENT'], 'Opera'))
+            {$browser = 'opera';}
+        else
+            {$browser = 'unknow browser';}
+            
+        $headers = "From: $this->email \r\n"."Reply-To: $this->email \r\n";
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $send = mail(TO, $this->select,"$this->massage\r\nBest Regards,
+$this->name\r\nip: $ip\r\nBrowser: $browser", $headers);   
+		return $send;
+	}		
+    
 }
-?>

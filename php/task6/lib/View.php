@@ -1,34 +1,35 @@
 <?php
 class View
 {
-    public $shablon;
-    public $keys=array();
-    
-    function setKey($key, $value)
-    {
-        $this->keys[$key] = $value;
-        
-    }
-    
-    function setShablon($template)
-    {   
-        
+    private $forRender;
+	private $file;
+
+	public function __construct($template)
+	{       
         if(is_file($template))
         {
-            $this->shablon = file_get_contents($template);
-            return $this->shablon;
+            $this->file = file_get_contents($template);
         }
         else
         {
-        throw new Exception('No template file');
+            throw new Exception('No template file');
         }
     }
+	public function addToReplace($mArray)
+	{
+	  foreach($mArray as $key=>$val)
+	   {
+			$this->forRender[$key] = $val;
+	   }
+	}
 
-    function chengeShablonKey()
-    {
-        foreach($this->keys as $metka=>$value)
-           $this->shablon = str_replace($metka, $value, $this->shablon);
-        return $this->shablon;
+	public function templateRender()
+	{
+		foreach($this->forRender as $key=>$val)
+		{
+			$this->file = str_replace($key, $val, $this->file);
+		}													
+		echo $this->file;
     }
 }   
 ?>
