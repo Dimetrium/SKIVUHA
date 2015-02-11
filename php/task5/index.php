@@ -23,10 +23,9 @@ $band->addMusician($gitara);
 $band->addMusician($bass);
 $piano->assignToBand($band);
 $drum->assignToBand($band);
-
+$band->addMusician($drum);
 
 $name_of_band = $band->name;
 
-var_dump($band);
 include 'templates/index.php';
 ?>

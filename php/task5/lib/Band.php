@@ -7,6 +7,7 @@ class Band implements iBand
     
     public function __construct($name, $genre)
     {
+        $this->musician=array();
         $this->name = $name;
         $this->genre = $genre;
     }
@@ -21,6 +22,12 @@ class Band implements iBand
     }
     public function addMusician(iMusician $obj)
     {
+      foreach($this->musician as $val)
+      {if($val===$obj)
+      
+      return true;}
+                         
+
         $this->musician[] = $obj;
     }
     public function getMusician()
