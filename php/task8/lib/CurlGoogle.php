@@ -23,9 +23,9 @@ class CurlGoogle
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
         curl_setopt($ch, CURLOPT_POST, 0);
-        $this->name = curl_exec($ch);
-        $this->text = curl_exec($ch);
-        $this->url = curl_exec($ch);
+        $this->data_name = iconv('CP1251', 'UTF-8', curl_exec($ch));
+        $this->data_text = iconv('CP1251', 'UTF-8', curl_exec($ch));
+        $this->data_url = iconv('CP1251', 'UTF-8', curl_exec($ch));
     }
 }
 
