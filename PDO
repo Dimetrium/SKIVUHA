@@ -1,0 +1,8 @@
+$stmt MyPDO::Command()->select()
+->from
+->where
+->limit
+->execute($data)
+
+Select 'name' from 'book' where 'id>2' limit '2'
+bindparam(':field', $arr['field'])
