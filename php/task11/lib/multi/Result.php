@@ -4,7 +4,7 @@ class Result
 {
 	static function res($a,$b)
 	{
-		return $a*$b.' '.__method__;
+		return $a*$b.'<br>'.__method__;
 	}
 }
 ?>

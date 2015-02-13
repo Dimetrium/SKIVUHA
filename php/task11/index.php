@@ -1,13 +1,14 @@
 <?php
-//include 'lib/Multi.php';
-//include 'lib/Sum.php';
+use lib\sum\Result as A;
+use lib\multi\Result as B;
+
+$obj=A::res(5,5);
+$obj2=B::res(5,5);
 
 function __autoload($class)
 {
-	$class = str_replace('\\', '/',$class.'.php');
-	require_once($class);
+$class = (str_replace('\\', '/',$class.'.php'));
+require_once($class);
 }
 
-$obj=lib\multi\Result::res(5,5);
-echo $obj;
-
+require_once('templates/index.php');
