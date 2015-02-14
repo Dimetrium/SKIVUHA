@@ -1,13 +1,12 @@
 <?php
 class Sql
 {
-  protected $query;
   protected $queryError;
   protected $select;
   protected $table;
   protected $where;
   protected $is;
-  protected $limit;
+  protected $order;
 
   function select($val)
   {
@@ -54,10 +53,30 @@ class Sql
     return $this;
   }
 
-  protected function query()
+  function order($val)
   {
-    $query = 'SELECT '.$this->select.' FROM '.$this->table.' WHERE '.$this->is.' = ? ';
-    return $query;    
+    if(trim($val)=='')
+    {
+      $this->queryError.="Error. Wrong parametre ORDER<br>";
+      return $this;
+    }
+    else
+    {
+      $val=$this->protect($val);
+      $this->order=$val;
+    }
+    return $this;
+  }
+
+  protected function query()
+  { $where='';
+    $order='';
+      if(strlen($this->is)!=0)
+    {$where="WHERE $this->is = ?";}
+      if(strlen($this->order)!=0)
+    {$order="ORDER BY ?";}
+    $query = 'SELECT '.$this->select.' FROM '.$this->table.' '.$where.' '.$order;
+      return $query;    
   }
 
   /*  protected function selectQuery($row, $table, $limit)

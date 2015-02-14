@@ -14,26 +14,24 @@ class PdoTry extends Sql
       {return $this->queryError;}
     else
     {
-    $sql=$this->query(); 
-      var_dump($sql);   
-      var_dump($this->where); 
-    $stmt=$this->db->prepare($sql);
-    $stmt->bindParam(1,$this->where);
-    $err=$stmt->execute();
+      $sql=$this->query(); 
+      $stmt=$this->db->prepare($sql);
+        if(strlen($this->is)!=0)
+        {$stmt->bindParam(1,$this->where);}
+        if(strlen($this->order!=0))
+        {$stmt->bindParam(2,$this->order);}
+      $err=$stmt->execute();
       if($err===false)
-      {$this->queryError = 'Wrong data!';
-      return $this->queryError;}
-    else
-    {
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $arr=$stmt->fetch();
-    return $arr;
-    }
+        {$this->queryError = 'Wrong data!';
+        return $this->queryError;}
+      else
+      {
+        $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        $arr = $stmt->fetch();
+        return $arr;
+      }
     }
   }
-
-
-
 }
 ?>
 

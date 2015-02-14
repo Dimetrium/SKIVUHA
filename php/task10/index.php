@@ -6,7 +6,11 @@ function __autoload($class)
 }
 
 $sql = new PdoTry(HOST, DB_NAME, USER, PASSWORD);
-$query= $sql->select('')->table('Book')->where('BookId','2')->commit();
-var_dump($query);
-include 'VIEW';
+$query= $sql->select('')
+  ->table('Book')
+  ->where('BookId','2')
+  ->commit();
+
+
+require_once VIEW;
 ?>
