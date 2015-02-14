@@ -1,71 +1,35 @@
 <?php
-class PdoTry
+class PdoTry extends Sql
 {
-  public $db;
-  //public $query;
-  public $select;
-  public $from;
-  public $where;
+  protected $db;
   
-  function __construct()
+  function __construct($host, $dbname, $user, $pass)
   {
- // $this->db = new PDO("mysql:host=localhost;dbname=user2",'root','123');
-  }
-
-  function select($val='*')
-  {
-     $this->select='*';
-    if($val!='*')
-      $this->select = $val;
-    return $this;
+    $this->db = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
   }
   
-  function from($val)
+  function commit()
   {
-    if(isset($val))
-      $this->from = $val;
-    return $this;
-  }
-
-  function where($val)
-  {
-    if(isset($val))
-      $this->where=$val;
-    return $this;
-  }
-
-  
-  function query()
-  {
-
-    $db = new PDO("mysql:host=localhost;dbname=user2",'root','123');
-    //$query =  'SELECT '.$this->select.' FROM '.$this->from.' WHERE '.$this->where;
-    $query =  'SELECT :col FROM :table WHERE :var';
-    $stmt=$db->prepare($query);
-    $q = array(':col'=>$this->select, ':table'=>$this->from,':var'=>$this->where);
-    $stmt->execute($q);
-    $book=$stmt->fetchAll();
-    echo '<pre>';
-    var_dump($q);
-    var_dump($stmt);
-    return $query;
-  }
-  
-  function comm()
-  {
-
-    $db = new PDO("mysql:host=localhost;dbname=user2",'root','123');
-    $sql='SELECT ? FROM ? WHERE ? ';
-    $stmt=$db->prepare($sql);
-    //var_dump($stmt->bindParam(':col',$this->select,PDO::PARAM_STR));
-    //var_dump($stmt->bindParam(':table',$this->from,PDO::PARAM_STR));
-    //var_dump($stmt->bindParam(':var',$this->where,PDO::PARAM_STR));
-    //$q=array(':col'=>'*', ':table'=>'Book',':var'=>'BookId = 1');
-    var_dump($stmt->execute(array($this->select,$this->from,$this->where)));
-    $book=$stmt->fetchAll();
-    echo '<pre>';
-    var_dump($stmt->execute());
-    return $book;
+    if(strlen($this->queryError)!=0)
+      {return $this->queryError;}
+    else
+    {
+    $sql=$this->query(); 
+      var_dump($sql);   
+      var_dump($this->where); 
+    $stmt=$this->db->prepare($sql);
+    $stmt->bindParam(1,$this->where);
+    $err=$stmt->execute();
+      if($err===false)
+      {$this->queryError = 'Wrong data!';
+      return $this->queryError;}
+    else
+    {
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+    $arr=$stmt->fetch();
+    return $arr;
+    }
+    }
   }
 
 

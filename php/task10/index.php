@@ -1,34 +1,12 @@
 <?php
-require_once('lib/PdoTry.php');
+require_once('config.php');
+function __autoload($class)
+{
+  require_once('lib/'.$class.'.php');
+}
 
-$sql = new PdoTry;
-$sqll = $sql->select()
-  ->from('Book')
-  ->where('BookId = 1')
-  ->comm();
-
-echo '<pre>';
-var_dump($sqll);
-
-
-/*
-$id[':id']=1;
-$db = new PDO("mysql:host=localhost;dbname=user2",'root','123');
-$sql='SELECT * FROM Book WHERE BookId = :id';
-//echo 'connected to db<br>';
-
-$stmt=$db->prepare($sql);
-//$stmt->bindParam(':id',$id);
-$stmt->execute($id);
-//$stmt->execute();
-$book= $stmt->fetchAll();
-echo '<pre>';
-var_dump($stmt->execute($id));
- */
-
-
-//$row = $stmt->fetch(PDO::FETCH_NUM);
-//$q=$obj->select('BookId')->from('Book');
-//include 'VIEW';
-
+$sql = new PdoTry(HOST, DB_NAME, USER, PASSWORD);
+$query= $sql->select('')->table('Book')->where('BookId','2')->commit();
+var_dump($query);
+include 'VIEW';
 ?>
