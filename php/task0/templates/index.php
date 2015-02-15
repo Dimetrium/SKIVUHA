@@ -39,17 +39,7 @@
             <th>Жанр</th>
             <th>Описание</th>
             <th>Цена</th>
-            <tr style='color: white; background-color: #4a4a4a <?=first?>'>
-                <td width='25%'><a style='color: white; font-weight:bold;' href='book.php?id=$show[id]'>$show[title]</a>
-                </td>
-                <tr style='color: black; background-color: #cacaca <?=second?>'>
-                    <td width='25%'><a style='color: black; font-weight:bold;' href='book.php?id=$show[id]'>$show[title]</a>
-                    </td>
-                    <td width='20%'>$show[authorname]</td>
-                    <td width='13%'>$show[genrename]</td>
-                    <td width='40%'>$show[description]</td>
-                    <td width='2%'>$show[price]</td>
-                </tr>
+            <?=show?>
         </table>
         <div style="text-align: left;<?=$footer?>">
             Сделать простой книжный каталог.

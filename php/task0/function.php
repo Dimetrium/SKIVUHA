@@ -6,13 +6,14 @@ function connect_to_db()
     return true;
 }
 
-function get_spisok()
+function get_content($query)
 {
     if($connect===true)
-        $res=mysql_query("SELECT genrename FROM genre");
-        while($genre=mysql_fetch_assoc($res));
-    $spisok.= "<option>$genre[genrename]</option>";
-    return $spisok;
+        $arr=array();
+        $res=mysql_query($query);
+        while($row=mysql_fetch_assoc($res));
+    $arr= $row; 
+    return $arr;
     else
     return false;
 }
@@ -30,67 +31,23 @@ function is_show()
         return false;
 }
 
-function get_show($genre,$search, $show)
+
+function get_show($arr)
 {
-    global $first,$second;
-    if($show===true)
+    $rcolor=1;
+    foreach($arr as $key => $val)
     {
-        $query="SELECT
-				b.id,
-				b.title,
-				GROUP_CONCAT(DISTINCT a.authorname SEPARATOR ', ') AS authorname,
-				GROUP_CONCAT(DISTINCT g.genrename SEPARATOR ', ') AS genrename,
-				b.description,
-				b.price 
-			FROM 
-				book b 
-			JOIN 
-				book_author ba 
-				ON 
-				ba.bookid=b.id 
-			JOIN 
-				author a 
-				ON 
-				a.id=ba.authorid 
-			JOIN 
-				book_genre bg 
-				ON 
-				bg.bookid=b.id 
-			JOIN 
-				genre g 
-				ON 
-				g.id=bg.genreid
-			WHERE				
-				g.genrename LIKE '$genre' 
-				AND				
-				(b.title LIKE '$search' 
-				OR
-				a.authorname LIKE '$search')
-		 	GROUP BY 
-				b.title
-		  ";
-        $qShow=mysql_query($res);
-        $arr=array();
-        $rcolor=1;
-		while($show=mysql_fetch_assoc($qShow))
-        {
-            if(($rcolor%CHET)==NECHET)
-            {
-                $first = '';
-                $second = 'display: none;';
-            }
-            else
-            {
-                $first = 'display: none;';
-                $second = '';
-            }
-            $rcolor++;
-            $arr=$show;
-        }
-            return $arr;
-    }
-    else
-        return false;
+			if(($rcolor%CHET)==NECHET)
+            {$show.="<tr style='color: white; background-color: #4a4a4a <?=first?>'>
+                <td width='25%'><a style='color: white; font-weight:bold;' href='book.php?id=$val[id]'>$val[title]</a></td>";}
+			else  
+            {$show.="<tr style='color: black; background-color: #cacaca <?=second?>'>
+				<td width='25%'><a style='color: black; font-weight:bold;' href='book.php?id=$val[id]'>$val[title]</a></td>";}
+			$show.="<td width='20%'>$val[authorname]</td><td width='13%'>$val[genrename]</td><td width='40%'>$val[description]</td>
+					<td width='2%'>$val[price]</td></tr>";
+			$rcolor++;
+	}
+            return $show;
 }
 
 function content_footer_show($rez)
