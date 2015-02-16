@@ -6,9 +6,9 @@ function __autoload($class)
 }
 
 $sql = new PdoTry(HOST, DB_NAME, USER, PASSWORD);
-$query= $sql->select('')
+$query= $sql->select('BookName')
   ->table('Book')
-  ->where('BookId','2')
+  ->where('BookId','1')
   ->commit();
 
 

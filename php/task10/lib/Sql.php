@@ -8,7 +8,7 @@ class Sql
   protected $is;
   protected $order;
 
-  function select($val)
+  protected function select($val)
   {
     $this->select='*';
     $val = $this->protect($val);
@@ -22,7 +22,7 @@ class Sql
       return $this;
   }   
 
-  function table($val)
+  protected function table($val)
   {
     if(trim($val)=='')
     {
@@ -37,7 +37,7 @@ class Sql
   return $this;
   }
 
-  function where($is, $val)
+  protected function where($is, $val)
   {
     if(trim($val)=='' || trim($is)=='')
     {
@@ -53,7 +53,7 @@ class Sql
     return $this;
   }
 
-  function order($val)
+  protected function order($val)
   {
     if(trim($val)=='')
     {
@@ -78,17 +78,6 @@ class Sql
     $query = 'SELECT '.$this->select.' FROM '.$this->table.' '.$where.' '.$order;
       return $query;    
   }
-
-  /*  protected function selectQuery($row, $table, $limit)
-  {
-        if (strlen($limit)!=0)
-      $limit=" LIMIT $limit";
-      $query = 'SELECT '.implode(', ',$row).' FROM '.implode(', ',$table).' '.$limit;
-      $this->query = $query;
-      }
-    return true;
-  }
-   */
   
   protected function protect($value){
         $value = htmlspecialchars(trim($value));
