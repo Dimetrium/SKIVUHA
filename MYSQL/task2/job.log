@@ -1,0 +1,139 @@
+CREATE TABLE task2 (num INT, var VARCHAR(255), text TEXT);
+
+
+DELIMITER //  
+CREATE PROCEDURE test ()  
+BEGIN 
+DECLARE count INT DEFAULT 1;
+WHILE count <= 700000 DO
+INSERT INTO task2 (num, var, text) VALUE (count, md5(RAND()), md5(RAND()));
+SET count = count + 1;
+END WHILE;
+END//
+DELIMITER ;
+	
+select var from task2 where var = 071b1c6710f9ecc62376114c3f2cac95;
+
+SELECT num FROM task2 LIMIT 599999, 1;
++--------+
+| num    |
++--------+
+| 600000 |
++--------+
+1 row in set (0.42 sec)
+
+explain SELECT num FROM task2 LIMIT 599999, 1;
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+| id | select_type | table | type | possible_keys | key  | key_len | ref  | rows   | Extra |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+|  1 | SIMPLE      | task2 | ALL  | NULL          | NULL | NULL    | NULL | 700000 |       |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+1 row in set (0.00 sec)
+
+SELECT var FROM task2 LIMIT 599999, 1;
++----------------------------------+
+| var                              |
++----------------------------------+
+| 071b1c6710f9ecc62376114c3f2cac95 |
++----------------------------------+
+1 row in set (0.44 sec)
+
+explain SELECT var FROM task2 LIMIT 599999, 1;
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+| id | select_type | table | type | possible_keys | key  | key_len | ref  | rows   | Extra |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+|  1 | SIMPLE      | task2 | ALL  | NULL          | NULL | NULL    | NULL | 700000 |       |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+1 row in set (0.01 sec)
+
+
+
+SELECT text FROM task2 LIMIT 599999, 1;
++----------------------------------+
+| text                             |
++----------------------------------+
+| 623398594cd6a59aac1b4e6613848f9c |
++----------------------------------+
+1 row in set (0.45 sec)
+
+explain SELECT text FROM task2 LIMIT 599999, 1;
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+| id | select_type | table | type | possible_keys | key  | key_len | ref  | rows   | Extra |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+|  1 | SIMPLE      | task2 | ALL  | NULL          | NULL | NULL    | NULL | 700000 |       |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+1 row in set (0.00 sec)
+
+
+SHOW SESSION STATUS LIKE 'Last_query_cost';
++-----------------+---------------+
+| Variable_name   | Value         |
++-----------------+---------------+
+| Last_query_cost | 152990.280250 |
++-----------------+---------------+
+1 row in set (0.00 sec)
+
+
+ALTER TABLE task2 ADD INDEX(num);
+Query OK, 700000 rows affected (6.68 sec)
+Records: 700000  Duplicates: 0  Warnings: 0
+
+SELECT num FROM task2 LIMIT 599999, 1;
++--------+
+| num    |
++--------+
+| 600000 |
++--------+
+1 row in set (0.66 sec)
+
+
+explain SELECT num FROM task2 LIMIT 599999, 1;
++----+-------------+-------+-------+---------------+------+---------+------+--------+-------------+
+| id | select_type | table | type  | possible_keys | key  | key_len | ref  | rows   | Extra       |
++----+-------------+-------+-------+---------------+------+---------+------+--------+-------------+
+|  1 | SIMPLE      | task2 | index | NULL          | num  | 5       | NULL | 700000 | Using index |
++----+-------------+-------+-------+---------------+------+---------+------+--------+-------------+
+1 row in set (0.00 sec)
+
+
+
+ALTER TABLE task2 ADD INDEX(var);
+Query OK, 700000 rows affected (18.91 sec)
+Records: 700000  Duplicates: 0  Warnings: 0
+
+SELECT var FROM task2 LIMIT 599999, 1;
++----------------------------------+
+| var                              |
++----------------------------------+
+| db7ced96d20d680606fb463745b2ef49 |
++----------------------------------+
+1 row in set (0.95 sec)
+
+explain SELECT var FROM task2 LIMIT 599999, 1;
++----+-------------+-------+-------+---------------+------+---------+------+--------+-------------+
+| id | select_type | table | type  | possible_keys | key  | key_len | ref  | rows   | Extra       |
++----+-------------+-------+-------+---------------+------+---------+------+--------+-------------+
+|  1 | SIMPLE      | task2 | index | NULL          | var  | 258     | NULL | 700000 | Using index |
++----+-------------+-------+-------+---------------+------+---------+------+--------+-------------+
+1 row in set (0.00 sec)
+
+
+ALTER TABLE task2 ADD FULLTEXT INDEX(text);
+Query OK, 700000 rows affected (27.70 sec)
+Records: 700000  Duplicates: 0  Warnings: 0
+
+SELECT text FROM task2 LIMIT 599999, 1;
++----------------------------------+
+| text                             |
++----------------------------------+
+| 623398594cd6a59aac1b4e6613848f9c |
++----------------------------------+
+1 row in set (0.43 sec)
+
+explain SELECT text FROM task2 LIMIT 599999, 1;
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+| id | select_type | table | type | possible_keys | key  | key_len | ref  | rows   | Extra |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+|  1 | SIMPLE      | task2 | ALL  | NULL          | NULL | NULL    | NULL | 700000 |       |
++----+-------------+-------+------+---------------+------+---------+------+--------+-------+
+1 row in set (0.00 sec)
