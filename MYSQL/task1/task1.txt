@@ -1,0 +1,60 @@
+CREATE TABLE `shop_authors` (
+  `author_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `author_name` TEXT,
+  PRIMARY KEY  (`author_id`)
+);
+
+CREATE TABLE `shop_books` (
+  `book_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `price` FLOAT,
+  `book_name` TEXT,
+  `img` VARCHAR(255),
+  `content` TEXT,
+  `visible` ENUM('0','1'),
+  PRIMARY KEY  (`book_id`)
+);
+
+CREATE TABLE `shop_book_a` (
+  `a_id` INT(10),
+  `b_id` INT(10)
+);
+
+CREATE TABLE `shop_book_g` (
+  `g_id` INT(10),
+  `b_id` INT(10)
+);
+
+CREATE TABLE `shop_cart` (
+  `book_id` INT(10),
+  `order_id` INT(100) NOT NULL AUTO_INCREMENT,
+  `quantity` INT(10),
+  `user_id` INT(10),
+  PRIMARY KEY  (`order_id`)
+);
+
+CREATE TABLE `shop_orders` (
+  `date` TIMESTAMP,
+  `order_id` INT(100),
+  `payment_id` TINYINT(10),
+  `price` FLOAT,
+  `user_id` INT(10)
+);
+
+CREATE TABLE `shop_payment` (
+  `payment_id` TINYINT(10) NOT NULL AUTO_INCREMENT,
+  `payment_name` TEXT,
+  PRIMARY KEY  (`payment_id`)
+);
+
+CREATE TABLE `shop_genre` (
+  `genre_id` INT(10),
+  `genre_name` TEXT
+);
+
+CREATE TABLE `shop_users` (
+  `discount` INT(10),
+  `user_id` INT(10) NOT NULL AUTO_INCREMENT,
+  `password` INT(10),
+  `name` INT(10),
+  PRIMARY KEY  (`user_id`)
+);
