@@ -15,13 +15,22 @@ class HtmlHelper
     return $echo;
   }
 
-  static function ul(array $arr, $method='ul', $param=" ")
+  static function ul($arr, $method='ul', $param=" ")
   {
     if(is_array($param))
     $param=implode(" ",$param);
     $echo.='<'.$method.' '.$param.' >';
     foreach($arr as $val)
-    {$echo.="<li>$val</li>";}
+    {
+      if(is_array($val))
+      {
+        $echo.=self::ul($val, $method ='ul');
+      }
+      else
+      {
+        $echo.="<li>$val</li>";
+      }
+    }
     $echo.="</$method>";
     return $echo;
   }

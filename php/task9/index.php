@@ -12,7 +12,8 @@ $param=array('border');
 $table=HtmlHelper::table($stroki,$head,$param);
 
 /* parametr for ul/ol */
-$arr=array('Igor','Vova','Petya','Semen');
+
+$arr=array('Lilya',array('Igor','Vasya'),'Vova','Petya','Semen');
 /* ul/ol */
 $ul=HtmlHelper::ul($arr,'ul');
 
