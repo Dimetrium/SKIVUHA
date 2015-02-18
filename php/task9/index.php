@@ -1,35 +1,40 @@
 <?php
-include 'config.php';
+require_once 'config.php';
 function __autoload($class)
 {
-    include('lib/'.$class.'.php');
+    require_once('lib/'.$class.'.php');
 }
-/* parametr for table */
+
+ /*
+ * table
+ */
 $head=array('Name','Surname','Age');
 $stroki=array(array('Igor','Igorev','15'),array('Vova','Ivanov','25'));
 $param=array('border');
-/* table */
 $table=HtmlHelper::table($stroki,$head,$param);
 
-/* parametr for ul/ol */
-
+ /*
+ * ul/ol 
+ */
 $arr=array('Lilya',array('Igor','Vasya'),'Vova','Petya','Semen');
-/* ul/ol */
 $ul=HtmlHelper::ul($arr,'ul');
 
-/* parametr for select */
+ /* 
+ * select
+ */
 $arr=array('Igor','Vova','Petya','Semen');
-/* select */
 $select=HtmlHelper::select($arr);
 
-/* parametr for dl-dt-dd */
+ /*
+ * dl-dt-dd
+ */
 $data=array('Vova'=>'asd;fkljas;ldkfj;lkasjdf;laskjdfsad','Petya'=>'asdfkjlahsdfasdjflk;j');
-/* dl-dt-dd */
-$dl=HtmlHelper::dl_dt_dd($data);
+$dl=HtmlHelper::dlDtDd($data);
 
-/* parametr for radio */
+ /*
+ * radio
+ */
 $stroki=array(array('Igor','Igorev','15'),array('Vova','Ivanov','25'));
-/* radio */
 $radio=HtmlHelper::radio($stroki);
 
 include VIEW;
