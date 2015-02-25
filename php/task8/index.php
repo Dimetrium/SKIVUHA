@@ -1,10 +1,10 @@
-=<?php
+<?php
 include 'config.php';
 include 'lib/CurlGoogle.php';
 $echo='';
 if($_POST)
 {
-	$obj_curl=new CurlGoogle($_POST['name']);
+  $obj_curl=new CurlGoogle($_POST['name']);
 	foreach($obj_curl->getName() as $key=>$val)
 	{
 		foreach($obj_curl->getUrl() as $key2=>$url)
@@ -18,4 +18,4 @@ if($_POST)
 	}
 }
 include VIEW;
-?>
+

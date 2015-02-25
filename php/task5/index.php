@@ -27,5 +27,7 @@ $band->addMusician($drum);
 
 $name_of_band = $band->name;
 
+echo '<pre>';
+var_dump($band);
 include 'templates/index.php';
 ?>
