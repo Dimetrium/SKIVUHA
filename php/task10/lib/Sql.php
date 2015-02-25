@@ -16,18 +16,19 @@ class Sql
       {
         return $this;
       }
-      else
+    else
+    {
         $this->select = $val;
-      
-      return $this;
+    }
+  return $this;
   }   
 
   public function table($val)
   {
     if(trim($val)=='')
     {
-        $this->queryError.= "Error. Table is empty!.<br>";
-        return $this;
+      $this->queryError.= "Error. Table is empty!.<br>";
+      return $this;
     }
     else
     {
@@ -65,16 +66,21 @@ class Sql
       $val=$this->protect($val);
       $this->order=$val;
     }
-    return $this;
+  return $this;
   }
 
   public function query()
-  { $where='';
+  {
+    $where='';
     $order='';
-      if(strlen($this->is)!=0)
-    {$where="WHERE $this->is = ?";}
-      if(strlen($this->order)!=0)
-    {$order="ORDER BY ?";}
+    if(strlen($this->is)!=0)
+    {
+      $where="WHERE $this->is = ?";
+    }
+    if(strlen($this->order)!=0)
+    {
+      $order="ORDER BY ?";
+    }
 	if(strlen($this->queryError)!=0)
 	{
 		return $this->queryError;
@@ -86,9 +92,10 @@ class Sql
 	}
   }
   
-  protected function protect($value){
-        $value = htmlspecialchars(trim($value));
-        return $value;
-    }
+  protected function protect($value)
+  {
+    $value = htmlspecialchars(trim($value));
+    return $value;
+  }
 }
 ?>

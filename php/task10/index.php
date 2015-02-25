@@ -15,9 +15,6 @@ $query = $mySql->select($select)
   ->table($table)
   ->where($where[0],$where[1])
   ->query();
-
-$arr = $myPdo->commit($query, $where[1]);
-var_dump($arr);
-  
+$arr = $myPdo->commit($query,$where[1]);
 require_once VIEW;
 ?>

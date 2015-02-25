@@ -4,7 +4,8 @@ include 'lib/CurlGoogle.php';
 $echo='';
 if($_POST)
 {
-  $obj_curl=new CurlGoogle($_POST['name']);
+  $search = str_replace(' ', '+', $_POST['name']);
+  $obj_curl=new CurlGoogle($search);
 	foreach($obj_curl->getName() as $key=>$val)
 	{
 		foreach($obj_curl->getUrl() as $key2=>$url)

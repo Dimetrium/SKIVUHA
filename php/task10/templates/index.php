@@ -6,9 +6,8 @@
 </head>
 <body>
     <h3>PDO</h3>
-<pre>
-<?php var_dump($query) ?>
-</pre>    
+    <div class="alert alert-info" role="alert">Prepare query: <?=$query?></div>
+    <div class="alert alert-success" role="alert"><?php print_r($arr);?></div>
 </body>
 </html>
 

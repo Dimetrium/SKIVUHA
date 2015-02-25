@@ -20,7 +20,7 @@ class CurlGoogle
         curl_setopt($ch, CURLOPT_USERAGENT, "");
         curl_setopt($ch, CURLOPT_FAILONERROR, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_REFERER, "http://www.google.com.ua/"); 
+        curl_setopt($ch, CURLOPT_REFERER, "http://www.google.com.ua/");
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
