@@ -5,9 +5,14 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h3>PDO</h3>
-    <div class="alert alert-info" role="alert">Prepare query: <?php echo $myPdo->queryError?></div>
-    <div class="alert alert-success" role="alert"><?php var_dump($arr);?></div>
+    <div class="alert alert-info" role="alert"><h3>PDO</h3><?php echo $myPdo->queryError;?></div>
+    <div class="row">
+	<div class="col-md-4">
+<table class="table table-striped">
+<?=$arr;?>
+</table>
+	</div>
+	</div>
 </body>
 </html>
 

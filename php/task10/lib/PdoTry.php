@@ -17,9 +17,13 @@ class PdoTry
   
   function __construct($host, $dbname, $user, $pass)
   {
-    $this->db = new PDO("mysql:host=$host;dbname=$dbname",'root','123');
+    $this->db = new PDO("mysql:host=$host;dbname=$dbname",$user,$pass);
   }
-  
+   /*
+   *select
+   *
+   *@param val: takes value coll.
+   */
   public function select($val)
   {
     $this->select='*';
@@ -34,24 +38,35 @@ class PdoTry
     }
     return $this;
   }   
-
+   /*
+   *delete
+   */
   public function delete()
   {
     $this->delete = 'DELETE FROM ';
     return $this;
   }
-  
+   /*
+   *insert
+   */
   public function insert()
   {
     $this->insert = 'INSERT INTO ';
     return $this;
   }
+   /*
+   *update
+   */
   public function update()
   {
     $this->update = 'UPDATE ';
     return $this;
   }
-
+   /*
+   *table
+   *
+   *@param val: takes value table.
+   */
   public function table($val)
   {
     if(trim($val)=='')
@@ -66,7 +81,11 @@ class PdoTry
     }
     return $this;
   }
-
+   /*
+   *select
+   *
+   *@param val: takes value coll.
+   */
   public function where($is, $val)
   {
     if(trim($val)=='' || trim($is)=='')
@@ -82,7 +101,12 @@ class PdoTry
     }
     return $this;
   }
-  
+   /*
+   *set
+   *
+   *@param old: takes before assignment.
+   *@param new: takes after assignment.
+   */
   public function set($old, $new)
   {
     if(trim($old)=='' || trim($new)=='')
@@ -98,7 +122,11 @@ class PdoTry
     }
     return $this;
   }
-  
+   /*
+   *order
+   *
+   *@param val: takes value coll order.
+   */
   public function order($val)
   {
     if(trim($val)=='')
@@ -113,7 +141,9 @@ class PdoTry
     }
     return $this;
   }
-
+   /*
+   *Query bilder
+   */
   function query()
   {
     $where='';
@@ -140,14 +170,22 @@ class PdoTry
     $this->query = $this->select.$this->delete.$this->insert.$this->update.$this->table.' '.$set.' '.$where.' '.$order;
   return $this;
   }
-
+   /*
+   *Checks input value
+   *
+   *@return: clean value.
+   */
   protected function protect($value)
   {
     $value = htmlspecialchars(trim($value));
     return $value;
   }
 
-
+   /*
+   *Prepare query and execute
+   *
+   *@return: result of the query.
+   */
 public function commit()
 {
   if(strlen($this->queryError)!=0)
@@ -157,7 +195,6 @@ public function commit()
   else
   {
     $stmt=$this->db->prepare($this->query);
-    var_dump($this->query);
   }
   if(!empty($this->old))
   {
@@ -167,7 +204,7 @@ public function commit()
   {
     $stmt->bindParam(':where',$this->where);
   }
-  if(strlen($this->order!=0))
+  if(strlen($this->order) !=0)
   {
     $stmt->bindParam(':order',$this->order);
   }
@@ -178,9 +215,24 @@ public function commit()
     return $this->queryError;}
   else
   {
+	if(trim($this->delete)!= '')
+	{
+		$arr = 'Query OK. Data delete.';
+		return $arr;
+	}
+	if(trim($this->update)!= '')
+	{
+		$arr = 'Query OK. Data update.';
+		return $arr;
+	}
+	if(trim($this->insert)!= '')
+	{
+		$arr = 'Query OK. Data insert.';
+		return $arr;
+	}
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $arr=array();
-    while($row = $stmt->fetchAll())
+    while($row = $stmt->fetch())
       $arr = $row;
     return $arr;
   }
