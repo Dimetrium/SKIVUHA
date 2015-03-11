@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>File manager</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="myContainer" class="clear">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="text" placeholder="Search" class="form-control" id="mySearch" oninput="mySearchFile()" />
+                </div>
+                <div class="col-md-6">
+                    <input type="button" id="buttonFile" onclick="createList()" value="File" class="btn btn-default btn-md active" />
+                    <input type="button" id="buttonBookmark" onclick="createListBookmark()" value="Bookmark" class="btn btn-default btn-md" />
+                    <input type="button" value="Upload" onclick="actionUpload()" class="btn btn-default btn-md" />
+                    <input type="button" value="New" class="btn btn-default btn-md" onclick="action()" />
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-md-9">
+                <table class="table table-bordered">
+                    <tbody id="data">
+                        <tr onclick="cancelBubble(event)">
+                            <th onclick="sortByName()">File Name <span id="glyphiconFileName" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                            </th>
+                            <th onclick="sortByType()">File Type <span id="glyphiconFileType" aria-hidden="true">
+                        </th>
+                        <th onclick="sortBySize()">Size (kb) <span id="glyphiconFileSize"  aria-hidden="true">
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-3" id = "action">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th >
+                            Action
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="menu">
+            <ul id="action">
+                <li><span class="glyphicon glyphicon-download" aria-hidden="true" onclick="downloadFile()">&nbsp;</span><a href="#" download>Download</a></li>
+                                <li onclick="previewCurentFile()"><span class="glyphicon glyphicon-eye-open" aria-hidden="true">&nbsp;</span>Preview</li>
+                                <li onclick="addToBookmark()"><span class="glyphicon glyphicon-flag" aria-hidden="true">&nbsp;</span>Bookmark</li>
+                                <li onclick="editCurentFile()"><span class="glyphicon glyphicon-pencil" aria-hidden="true">&nbsp;</span>Edit</li>
+                                <br>
+                                </ul>
+                                <p class="text-success">File selected: <span id="fileSelected"></span>
+                                </p>
+            </div>
+            <div id="menuDefault">
+                <p class="text-info">Select file at the left side</p>
+                <p class="text-info">by clicking on it</p>
+            </div>
+        </div>
+            </div>
+
+        <div id='modal-wnd-wrap'>
+            <div id='modal-wnd-content' onclick="cancelBubble(event)">
+                <div class='modal-wnd-title'>
+                    <span>New file</span>
+                    <a class='close-modal-top' onclick="action()" href='#'>
+						&times;
+					</a>
+                </div>
+                <div class='modal-wnd-body'>
+                    <span><input type="text" placeholder="Name" /></span>
+                    <p></p>
+                    <select id="menuNewFile">
+                        <option>txt</option>
+                        <option>html</option>
+                    </select>
+                    <div id="wysiwyg">
+                        <input id="iBold" type="button" onClick="iBold()" class="btn btn-default btn-sm" value="B" />
+                        <input id="iUnderline" type="button" onClick="iUnderline()" class="btn btn-default btn-sm" value="U" />
+                        <input id="iItalic" type="button" onClick="iItalic()" class="btn btn-default btn-sm" value="I" />
+                        <input id="iImage" type="button" onClick="iImage()" class="btn btn-default btn-sm" value="Image" />
+                        <iframe name="richTextField" id="richTextField"></iframe>
+                    </div>
+                </div>
+                <div class='clear'>
+                    <input type="button" value="Ok" class="btn btn-success" id="saveButtom" onclick="saveFile()" />
+                    <input type="button" value="Cancel" id="cancelButtom" class="btn btn-default" onclick="action()" />
+                </div>
+            </div>
+        </div> 
+    </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="js/modalWindow.js" type="text/javascript"></script>
+    <script src="js/modalWindowContent.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
+
+
+
+</body>
+
+</html>
