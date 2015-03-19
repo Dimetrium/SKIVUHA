@@ -1,0 +1,20 @@
+<!--Шаблон детального-->
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 well" id="detail">
+        <h2>{{book.books[book.bookId].name}}</h2>
+        <div id="imgDivDet">
+            <img ng-src="{{book.books[book.bookId].big_pic}}" class="img-rounded text-center" />
+        </div>
+        <p>{{book.books[book.bookId].big_desc}}</p>
+        <h3>{{book.books[book.bookId].price | currency}}</h3>
+        <div class="clear"></div>
+        <div class="buttoDet">
+            <hr>
+            <button ui-sref="home" type="button" class="btn btn-default">Back</button>
+            <button type="button" ng-hide="book.buttonBuy(book.books[book.bookId].id)" class="btn btn-default" ng-click="book.cart(book.bookId)">Add to cart</button>
+            <button type="button" ng-show="book.buttonBuy(book.books[book.bookId].id)" class="btn btn-default" ui-sref="cart"><span class="glyphicon glyphicon-shopping-cart"></span> To cart</button>
+        </div>
+    </div>
+</div>

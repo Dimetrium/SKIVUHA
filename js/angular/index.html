@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html ng-app="shop">
+<html>
+
 <head>
     <meta charset="UTF-8">
     <title>BookShop Angular</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
 </head>
-<body ng-controller="shopController as shop">
-<div class="row"><div class="col-md-12" style="background-color: blue">&nbsp;</div></div>
 
-<div class="row">
-	<div class="col-md-4" ng-repeat="book in shop.books">
-	<img ng-src="{{book.big_pic}}" />
-	<p>Price {{book.price}}</p>
-	<p>Price {{book.small_desc}}</p>
-	</div>
+<body ng-app="app">
+    <header-Dir></header-Dir>
+    <div class="container">
+        <div ui-view></div>
+    </div>
 
-</div>
-
-<!--{{shop | json}}-->
-
-
-
-
-    <script src="app/js/controllers.js"></script>
+    <script src="app/js/app.js"></script>
+    <script src="app/js/services/cart.js"></script>
+    <script src="app/js/services/book.js"></script>
+    <script src="app/js/directives/headerDir.js"></script>
+    <script src="app/js/controllers/bookController.js"></script>
+    <script src="app/js/controllers/cartControllers.js"></script>
+    <script src="app/js/controllers/shopController.js"></script>
+    <script src="app/js/controllers/buyController.js"></script>
+    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,17 @@
+<!--Шаблон с общим списком-->
+
+<div class="row">
+    <div class="col-md-3 well books" id="content" ng-repeat="book in main.books">
+        <div class="contentWrapper">
+            <h2>{{book.name}}</h2>
+            <div class="preview-img text-center">
+                <img ng-src="{{book.small_pic}}" />
+            </div>
+            <p>Price: {{book.price}}</p>
+            <p>{{book.big_desc | limitTo:100}}...</p>
+            <a class="btn btn-default" href="#/book/{{book.id}}" role="button">Details</a>
+            <button type="button" ng-hide="main.buttonBuy(book.id)" class="btn btn-default" ng-click="main.cart(book.id)">Add to cart</button>
+            <button type="button" ng-show="main.buttonBuy(book.id)" class="btn btn-default" ui-sref="cart"><span class="glyphicon glyphicon-shopping-cart"></span> To cart</button>
+        </div>
+    </div>
+</div>
