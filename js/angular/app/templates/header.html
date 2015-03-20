@@ -1,0 +1,10 @@
+<!--Шаблон хедера-->
+
+<div class="navbar navbar-inverse navbar">
+    <div class="container">
+        <a ui-sref="home" class="navbar-brand">Home</a>
+        <div class="nav navbar-nav navbar-right">
+            <a ui-sref="cart" class="navbar-brand"><span>( {{cart.sum()}} )</span>Cart</a>
+        </div>
+    </div>
+</div>

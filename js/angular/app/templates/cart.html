@@ -1,0 +1,39 @@
+<!--Шаблон карзины-->
+
+<div class="row" id="tableCart">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <table class="table table-hover ">
+            <tr class="info">
+                <th>#</th>
+                <th>Book name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
+            <tr ng-repeat="it in cart.loc">
+                <td>{{$index + 1}}.</td>
+                <td>{{it.name}}</td>
+                <td>
+                    <button ng-click="cart.minus($index)" class="glyphicon glyphicon-minus"></button>
+                    {{it.quantity}}
+                    <button ng-click="cart.plus($index)" class="glyphicon glyphicon-plus"></button>
+                </td>
+                <td ng-model="price">{{it.quantity*it.price | currency}}</td>
+                <td>
+                    <button ng-click="cart.del($index)" class=" glyphicon glyphicon-remove"></button>
+                </td>
+            </tr>
+        </table>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+                <p class="text-primary totalCart">Total: {{cart.total() | currency}} Quantity: {{cart.sum()}}</p>
+            </div>
+            <div class="col-md-3">
+                <button ui-sref="buy" ng-show="cart.sum()" class="btn btn-default" id="buttonCartBuy">Buy</button>
+                <button ui-sref="buy" ng-hide="cart.sum()" class="btn btn-default" id="buttonCartBuy" disabled>Buy</button>
+            </div>
+        </div>
+    </div>
+</div>

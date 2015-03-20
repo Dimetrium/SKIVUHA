@@ -1,0 +1,57 @@
+<!--Шаблон оформления заказа-->
+
+<div>
+    <form novalidate class="simple-form" name="frm" ng-class="{bor: buy.user}" id="formVal">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">Phone</label>
+                <input type="text" class="form-control" ng-pattern="buy.phone" ng-model="buy.user.phone" ng-maxlength="10" required name="phone" />
+                <span ng-show="frm.phone.$dirty && frm.phone.$error.maxlength">To long!</span>
+                <span ng-show="frm.phone.$dirty && frm.phone.$error.pattern">Not a number</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">First name:</label>
+                <input type="text" class="form-control" ng-model="buy.user.fname" ng-minlength="2" ng-pattern="buy.stringName" required name="fname" />
+                <span ng-show="frm.fname.$dirty && frm.fname.$error.minlength">To short!</span>
+                <span ng-show="frm.fname.$dirty && frm.fname.$error.pattern">Wrong format</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">Last name:</label>
+                <input type="text" class="form-control" ng-model="buy.user.lname" ng-minlength="2" ng-pattern="buy.stringName" required name="lname" />
+                <span ng-show="frm.lname.$dirty && frm.lname.$error.minlength">To short!</span>
+                <span ng-show="frm.lname.$dirty && frm.lname.$error.pattern">Wrong format</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">E-mail:</label>
+                <input type="email" class="form-control" ng-model="buy.user.email" required id="email" name="email" />
+                <span ng-show="frm.email.$dirty && frm.email.$error.email">Not an email</span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <label for="">Gender:</label>
+                <input type="radio" ng-model="buy.user.gender" value="male" />male
+                <input type="radio" ng-model="buy.user.gender" value="female" />female
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-4 col-md-offset-5">
+                <button ng-click="buy.reset()" class="btn btn-default" type="reset">Reset</button>
+                <button ng-disabled="frm.$invalid"  ng-click="buy.update(user)" class="btn btn-default">Send</button>
+                <div id="doneShow" ng-show="buy.doneSave"><h2>Done!<h2></div>
+            </div>
+            
+        </div>
+    </form>
+</div>
