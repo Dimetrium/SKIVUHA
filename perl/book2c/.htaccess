@@ -1,5 +1,0 @@
-RewriteEngine On 
-RewriteBase /~user8/work/trunk/perl/book2c/
-RewriteCond %{REQUEST_FILENAME} !-f 
-RewriteCond %{REQUEST_FILENAME} !-d 
-RewriteRule ^(.*)$ index.cgi/$1 [PT] 
