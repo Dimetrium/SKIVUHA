@@ -1,0 +1,6 @@
+RewriteEngine On
+Options +FollowSymlinks
+RewriteBase  /~user2/perl/task1/
+DirectoryIndex index.cgi
+
+RewriteRule ^(.*)$ index.cgi [L]
