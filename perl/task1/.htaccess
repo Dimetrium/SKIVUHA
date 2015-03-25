@@ -1,6 +1,9 @@
-RewriteEngine On
-Options +FollowSymlinks
-RewriteBase  /~user2/perl/task1/
-DirectoryIndex index.cgi
-
-RewriteRule ^(.*)$ index.cgi [L]
+#RewriteEngine On
+#Options +FollowSymlinks
+#RewriteBase  /var/cgi-bin/task1/
+#DirectoryIndex index.pl
+#
+#RewriteRule ^(.*)$ index.pl [L]
+RewriteEngine on
+RewriteBase  /var/cgi-bin/task1/
+RewriteRule !\.(js|gif|png|jpg|css)$ index.pl
