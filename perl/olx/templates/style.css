@@ -1,0 +1,13 @@
+.container {
+    margin-top: 15px;
+}
+
+#smhlando {
+text-shadow: 1px 1px 2px black, 0 0 1em;
+color: red;
+}
+
+.veryEasy {
+    max-width: 283px;
+    
+}
