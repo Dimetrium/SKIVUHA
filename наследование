@@ -1,3 +1,8 @@
+kill id process;
+show processlist;
+
+
+
 class Demo
 {
   public $testOne;
